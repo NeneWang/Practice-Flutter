@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import './question.dart';
+
 // void main() {
 //   runApp(MyApp());
 // }
@@ -17,7 +19,7 @@ class MyApp extends StatefulWidget {
 class MyAppState extends State<MyApp> {
   void answerQuestion(answer) {
     setState(() {
-      questionNumber++;
+      _questionIndex++;
     });
     print("Answer chosen! $answer");
   }
@@ -27,16 +29,16 @@ class MyAppState extends State<MyApp> {
     "What's your favorite animal?"
   ];
 
-  var questionNumber = 0;
+  var _questionIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text("My First Quiz App")),
+        appBar: AppBar(title: Text("My First Quiz with Extracted Dart File")),
         body: Column(
           children: [
-            Text(questions.elementAt(questionNumber)),
+            Question(questions[_questionIndex]),
             RaisedButton(
                 child: Text("Answer 1"), onPressed: () => answerQuestion("Q1")),
             RaisedButton(

@@ -16,8 +16,10 @@ class MyApp extends StatefulWidget {
 
 class MyAppState extends State<MyApp> {
   void answerQuestion(answer) {
+    setState(() {
+      questionNumber++;
+    });
     print("Answer chosen! $answer");
-    questionNumber++;
   }
 
   var questions = [

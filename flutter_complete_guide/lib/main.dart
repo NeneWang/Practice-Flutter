@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/quiz.dart';
 
-import './question.dart';
-import './answer.dart';
+import './quiz.dart';
 
 // void main() {
 //   runApp(MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var questions = [
+  var _questions = [
     {
       'questionText': 'Whats your favorite color?',
       'answers': ['Black', 'Red', 'Green', 'White']
@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
   void _answerQuestion(answer) {
     setState(() {
       _questionIndex++;
-      if (_questionIndex >= questions.length) {
+      if (_questionIndex >= _questions.length) {
         _questionIndex = 0;
       }
     });
@@ -50,15 +50,11 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(title: Text("My First Quiz with Extracted Dart File")),
-        body: _questionIndex <= questions.length - 1
-            ? Column(
-                children: [
-                  Question(questions[_questionIndex]["questionText"]),
-                  ...(questions[_questionIndex]["answers"] as List<String>)
-                      .map((question) {
-                    return Answer(_answerQuestion, question);
-                  }).toList(),
-                ],
+        body: _questionIndex <= _questions.length - 1
+            ? Quiz(
+                answerQuestion: _answerQuestion,
+                questionIndex: _questionIndex,
+                questions: _questions,
               )
             : Center(child: Text("You did it!")),
       ),

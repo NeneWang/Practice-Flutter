@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/quiz.dart';
 
 import './quiz.dart';
-import "./result.dart";
-
+import './result.dart';
 // void main() {
 //   runApp(MyApp());
 // }
@@ -19,62 +17,82 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  var _questions = [
+  final _questions = const [
     {
-      "questionText": "What's your favorite color?",
-      "answers": [
-        {"text": "Black", "score": 10},
-        {"text": "Red", "score": 5},
-        {"text": "Green", "score": 3},
-        {"text": "white", "score": 1}
-      ]
+      'questionText': 'What\'s your favorite color?',
+      'answers': [
+        {'text': 'Black', 'score': 10},
+        {'text': 'Red', 'score': 5},
+        {'text': 'Green', 'score': 3},
+        {'text': 'White', 'score': 1},
+      ],
     },
     {
-      'questionText': 'Whats your favorite Animal?',
+      'questionText': 'What\'s your favorite animal?',
       'answers': [
-        {"text": 'Rabbit', "score": 4},
-        {"text": 'Snake', "score": 10},
-        {"text": 'Elephant', "score": 2},
-        {"text": 'Lion', "score": 3},
-      ]
+        {'text': 'Rabbit', 'score': 3},
+        {'text': 'Snake', 'score': 11},
+        {'text': 'Elephant', 'score': 5},
+        {'text': 'Lion', 'score': 9},
+      ],
     },
     {
-      'questionText': 'Who is your favorite instructor?',
+      'questionText': 'Who\'s your favorite instructor?',
       'answers': [
-        {"text": 'Max', "score": 10},
-        {"text": 'Nelson', "score": 12},
-        {"text": 'Noone xd', "score": 0},
-        {"text": 'NaZhou', "score": 10},
-      ]
-    }
+        {'text': 'Max', 'score': 1},
+        {'text': 'Max', 'score': 1},
+        {'text': 'Max', 'score': 1},
+        {'text': 'Max', 'score': 1},
+      ],
+    },
   ];
-
-  void _answerQuestion(answer, int score) {
-    _totalScore = _totalScore + score;
-    setState(() {
-      _questionIndex++;
-      if (_questionIndex >= _questions.length) {
-        _questionIndex = 0;
-      }
-    });
-    print("Answer chosen! $answer with id $_questionIndex");
-  }
-
   var _questionIndex = 0;
   var _totalScore = 0;
 
+  void _resetQuiz() {
+    setState(() {
+      _questionIndex = 0;
+      _totalScore = 0;
+    });
+  }
+
+  void _answerQuestion(int score) {
+    // var aBool = true;
+    // aBool = false;
+
+    _totalScore += score;
+
+    setState(() {
+      _questionIndex = _questionIndex + 1;
+    });
+    print(_questionIndex);
+    if (_questionIndex < _questions.length) {
+      print('We have more questions!');
+    } else {
+      print('No more questions!');
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    // var dummy = const ['Hello'];
+    // dummy.add('Max');
+    // print(dummy);
+    // dummy = [];
+    // questions = []; // does not work if questions is a const
+
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(title: Text("My First Quiz with Extracted Dart File")),
-        body: _questionIndex <= _questions.length - 1
+        appBar: AppBar(
+          title: Text('My First App'),
+        ),
+        body: _questionIndex < _questions.length
             ? Quiz(
                 answerQuestion: _answerQuestion,
                 questionIndex: _questionIndex,
                 questions: _questions,
               )
-            : Result(_totalScore),
+            : Result(_totalScore, _resetQuiz),
       ),
     );
   }

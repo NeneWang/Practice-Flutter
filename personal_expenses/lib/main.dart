@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                     padding: EdgeInsets.all(10),
                     child: Text(
-                      tx.amount.toString(),
+                      'A: \$${tx.amount.toString()}',
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -80,9 +80,8 @@ class _MyHomePageState extends State<MyHomePage> {
                         Text(tx.title.toString(),
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold)),
-                        Text(
-                          tx.date.toString(),
-                        ),
+                        Text(tx.date.toString(),
+                            style: TextStyle(color: Colors.grey)),
                       ])
                 ],
               ));

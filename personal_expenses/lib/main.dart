@@ -66,13 +66,24 @@ class _MyHomePageState extends State<MyHomePage> {
                     padding: EdgeInsets.all(10),
                     child: Text(
                       tx.amount.toString(),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.purple),
                     ),
                     decoration: BoxDecoration(
-                        border: Border.all(color: Colors.black, width: 2)),
+                        border: Border.all(color: Colors.purple, width: 2)),
                   ),
-                  Column(children: <Widget>[
-                    Text(tx.title.toString()),
-                  ])
+                  Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(tx.title.toString(),
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold)),
+                        Text(
+                          tx.date.toString(),
+                        ),
+                      ])
                 ],
               ));
             }).toList())),

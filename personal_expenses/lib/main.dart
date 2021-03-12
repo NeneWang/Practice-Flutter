@@ -48,13 +48,32 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          // mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Card(
               child: Container(
                   width: double.infinity,
                   child: Card(color: Colors.blue, child: Text("Chart!"))),
+              elevation: 5,
+            ),
+            Card(
+              child: Container(
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: <Widget>[
+                      TextField(
+                        decoration: InputDecoration(labelText: "Title"),
+                      ),
+                      TextField(),
+                      FlatButton(
+                        child: Text("Add Transaction"),
+                        textColor: Colors.purple,
+                        onPressed: () {},
+                      ),
+                    ]),
+                margin: EdgeInsets.all(10),
+              ),
               elevation: 5,
             ),
             Card(
@@ -82,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Text(tx.title.toString(),
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold)),
-                        Text(DateFormat().format(tx.date),
+                        Text(DateFormat.yMMMd().format(tx.date),
                             style: TextStyle(color: Colors.grey)),
                       ])
                 ],

@@ -82,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         Text(tx.title.toString(),
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold)),
-                        Text(tx.date.toString(),
+                        Text(DateFormat().format(tx.date),
                             style: TextStyle(color: Colors.grey)),
                       ])
                 ],

@@ -50,12 +50,16 @@ class Chart extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: groupedTransactionValue.map((data) {
-          return ChartBar(
-              data['day'],
-              data['amount'],
-              (totalSpending > 0
-                  ? (data['amount'] as double) / totalSpending
-                  : 0.0));
+          return Flexible(
+            flex: 1,
+            fit: FlexFit.tight,
+            child: ChartBar(
+                data['day'],
+                data['amount'],
+                (totalSpending > 0
+                    ? (data['amount'] as double) / totalSpending
+                    : 0.0)),
+          );
         }).toList(),
       ),
     );

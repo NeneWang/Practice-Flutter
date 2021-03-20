@@ -44,28 +44,26 @@ class Chart extends StatelessWidget {
   Widget build(BuildContext context) {
     print(groupedTransactionValue);
     double totalSpending = maxSpending;
-    return Container(
-        height: MediaQuery.of(context).size.height * 0.4,
-        child: Card(
-          elevation: 6,
-          margin: EdgeInsets.all(20),
-          child: Container(
-              padding: EdgeInsets.all(10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: groupedTransactionValue.map((data) {
-                  return Flexible(
-                    flex: 1,
-                    fit: FlexFit.tight,
-                    child: ChartBar(
-                        data['day'],
-                        data['amount'],
-                        (totalSpending > 0
-                            ? (data['amount'] as double) / totalSpending
-                            : 0.0)),
-                  );
-                }).toList(),
-              )),
-        ));
+    return Card(
+      elevation: 6,
+      margin: EdgeInsets.all(20),
+      child: Container(
+          padding: EdgeInsets.all(10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: groupedTransactionValue.map((data) {
+              return Flexible(
+                flex: 1,
+                fit: FlexFit.tight,
+                child: ChartBar(
+                    data['day'],
+                    data['amount'],
+                    (totalSpending > 0
+                        ? (data['amount'] as double) / totalSpending
+                        : 0.0)),
+              );
+            }).toList(),
+          )),
+    );
   }
 }

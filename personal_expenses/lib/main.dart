@@ -134,7 +134,7 @@ class _MyHomePageState extends State<MyHomePage> {
           if (isLandscape)
             Row(
               children: <Widget>[
-                Text('Show Chart'),
+                Text('Show Chart', style: Theme.of(context).textTheme.title),
                 Switch.adaptive(
                   activeColor: Theme.of(context).accentColor,
                   value: _showChart,

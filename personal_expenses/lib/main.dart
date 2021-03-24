@@ -92,31 +92,37 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _buildLandscapeContent() {
-    return Row(
-      children: <Widget>[
-        Text('Show Chart', style: Theme.of(context).textTheme.title),
-        Switch.adaptive(
-          activeColor: Theme.of(context).accentColor,
-          value: _showChart,
-          onChanged: ((val) {
-            setState(() {
-              _showChart = val;
-            });
-          }),
-        )
-      ],
-    );
+  List<Widget> _buildLandscapeContent() {
+    return [
+      Row(
+        children: <Widget>[
+          Text('Show Chart', style: Theme.of(context).textTheme.title),
+          Switch.adaptive(
+            activeColor: Theme.of(context).accentColor,
+            value: _showChart,
+            onChanged: ((val) {
+              setState(() {
+                _showChart = val;
+              });
+            }),
+          )
+        ],
+      ),
+    ];
   }
 
-  Widget _buildPortraitContent(MediaQueryData mediaQuery, AppBar appBar) {
-    return Container(
-      height: (mediaQuery.size.height -
-              appBar.preferredSize.height -
-              mediaQuery.padding.top) *
-          0.3,
-      child: Chart(_recentTransactions),
-    );
+  List<Widget> _buildPortraitContent(
+      MediaQueryData mediaQuery, AppBar appBar, Widget widget) {
+    return [
+      Container(
+        height: (mediaQuery.size.height -
+                appBar.preferredSize.height -
+                mediaQuery.padding.top) *
+            0.3,
+        child: Chart(_recentTransactions),
+      ),
+      widget
+    ];
   }
 
   @override
@@ -158,9 +164,9 @@ class _MyHomePageState extends State<MyHomePage> {
         // mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-          if (isLandscape) _buildLandscapeContent(),
-          if (!isLandscape) _buildPortraitContent(mediaQuery, appBar),
-          if (!isLandscape) txtListWidget,
+          if (isLandscape) ..._buildLandscapeContent(),
+          if (!isLandscape)
+            ..._buildPortraitContent(mediaQuery, appBar, txtListWidget),
           _showChart
               ? Container(
                   height: (mediaQuery.size.height -

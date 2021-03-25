@@ -138,6 +138,10 @@ class _MyHomePageState extends State<MyHomePage> {
     ];
   }
 
+  Widget _buildAppNavBar() {
+    Platform.isIOS ? _buildAppBarIOS() : _buildAppBarMaterial();
+  }
+
   List<Widget> _buildPortraitContent(
       MediaQueryData mediaQuery, AppBar appBar, Widget widget) {
     return [
@@ -156,8 +160,8 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final isLandscape = mediaQuery.orientation == Orientation.landscape;
-    final PreferredSizeWidget appBar =
-        Platform.isIOS ? _buildAppBarIOS() : _buildAppBarMaterial();
+    final PreferredSizeWidget appBar = _buildAppNavBar();
+    ;
     final txtListWidget = Container(
         height: (mediaQuery.size.height -
                 appBar.preferredSize.height -

@@ -26,7 +26,7 @@ class _MyAppState extends State<MyApp> {
       textContent = textFinal;
     });
 
-    print("Changing Text");
+    // print("Changing Text");
   }
 
   @override

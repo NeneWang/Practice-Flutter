@@ -139,7 +139,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget _buildAppNavBar() {
-    Platform.isIOS ? _buildAppBarIOS() : _buildAppBarMaterial();
+    return Platform.isIOS ? _buildAppBarIOS() : _buildAppBarMaterial();
   }
 
   List<Widget> _buildPortraitContent(

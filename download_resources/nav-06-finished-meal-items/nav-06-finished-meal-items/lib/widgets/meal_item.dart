@@ -105,39 +105,21 @@ class MealItem extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: <Widget>[
-                  Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.schedule,
-                      ),
-                      SizedBox(
-                        width: 6,
-                      ),
-                      Text('$duration min'),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.work,
-                      ),
-                      SizedBox(
-                        width: 6,
-                      ),
-                      Text(complexityText),
-                    ],
-                  ),
-                  Row(
-                    children: <Widget>[
-                      Icon(
-                        Icons.attach_money,
-                      ),
-                      SizedBox(
-                        width: 6,
-                      ),
-                      Text(affordabilityText),
-                    ],
-                  ),
+                  Row(children: <Widget>[
+                    Icon(Icons.schedule,),
+                    SizedBox(width: 6,),
+                    Text('$duration min'),
+                  ],),
+                  Row(children: <Widget>[
+                    Icon(Icons.work,),
+                    SizedBox(width: 6,),
+                    Text(complexityText),
+                  ],),
+                    Row(children: <Widget>[
+                    Icon(Icons.attach_money,),
+                    SizedBox(width: 6,),
+                    Text(affordabilityText),
+                  ],),
                 ],
               ),
             ),

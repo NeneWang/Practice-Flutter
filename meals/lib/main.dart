@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'categories_screen.dart';
 
+import 'category_meals_screen.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -25,6 +27,9 @@ class MyApp extends StatelessWidget {
                 fontFamily: "RobotoCondensed",
               ))),
       home: CategoriesScreen(),
+      routes: {
+        'categories': (ctx) => CategoryMealsScreen(),
+      },
     );
   }
 }
@@ -47,6 +52,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final routeArgs =
+        ModalRoute.of(context).settings.arguments as Map<String, String>;
+    final categoryTitle = routeArgs['title'];
+    final categoryId = routeArgs['id'];
+
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),

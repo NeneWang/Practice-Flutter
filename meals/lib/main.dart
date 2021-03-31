@@ -6,6 +6,8 @@ import './categories_screen.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  static const routeName = '/category-meals';
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

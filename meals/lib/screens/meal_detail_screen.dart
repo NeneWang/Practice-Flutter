@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 
 import '../dummy_data.dart';
-import '../dummy_data.dart';
 
 class MealDetailScreen extends StatelessWidget {
   static const routeName = '/meal-detail';
+
+  Widget buildSectionTitle(BuildContext context, String text) {
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 10),
+      child: Text(text, style: Theme.of(context).textTheme.title),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,18 +28,14 @@ class MealDetailScreen extends StatelessWidget {
             width: double.infinity,
             child: Image.network(selectedMeal.imageUrl, fit: BoxFit.cover),
           ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 10),
-            child:
-                Text('Ingredients', style: Theme.of(context).textTheme.title),
-          ),
+          buildSectionTitle(context, 'Ingredients'),
           Container(
             decoration: BoxDecoration(
                 color: Colors.white,
                 border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.circular(10)),
             margin: EdgeInsets.all(10),
-            height: 200,
+            height: 150,
             width: 300,
             child: ListView.builder(
               itemBuilder: (ctx, index) => Card(
@@ -46,6 +48,7 @@ class MealDetailScreen extends StatelessWidget {
               itemCount: selectedMeal.ingredients.length,
             ),
           ),
+          buildSectionTitle(context, 'Steps')
         ],
       ),
     );

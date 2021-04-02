@@ -52,6 +52,7 @@ class _MyAppState extends State<MyApp> {
   void _toggleFavorite(String mealId) {
     final existingIndex =
         _favoriteMeals.indexWhere((meal) => meal.id == mealId);
+    // It is -1 if it doesn't exists
     if (existingIndex >= 0) {
       setState(() {
         _favoriteMeals.removeAt(existingIndex);
@@ -65,6 +66,7 @@ class _MyAppState extends State<MyApp> {
     }
   }
 
+// If it has the id
   bool _isMealFavorite(String id) {
     return _favoriteMeals.any((meal) => meal.id == id);
   }

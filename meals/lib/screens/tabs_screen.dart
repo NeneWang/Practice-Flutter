@@ -28,8 +28,19 @@ class _TabsScreenState extends State<TabsScreen> {
             ],
           ),
         ),
-        body: TabBarView(
-          children: <Widget>[CategoriesScreen(), FavoriteScreen()],
+        body: null,
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Theme.of(context).primaryColor,
+          items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.category),
+              title: Text('Categories'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.star),
+              title: Text('Categories'),
+            )
+          ],
         ),
       ),
     );

@@ -14,6 +14,12 @@ class ProductItem extends StatelessWidget {
         this.imageUrl,
         fit: BoxFit.cover,
       ),
+      footer: GridTileBar(
+        title: Text(
+          title,
+          textAlign: TextAlign.center,
+        ),
+      ),
     );
   }
 }

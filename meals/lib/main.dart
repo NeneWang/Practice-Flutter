@@ -23,6 +23,7 @@ class _MyAppState extends State<MyApp> {
     'vegetarian': false,
   };
   List<Meal> _availableMeals = DUMMY_MEALS;
+  // Fav meals
   List<Meal> _favoriteMeals = [];
 
   void _setFilters(Map<String, bool> filterData) {
@@ -47,6 +48,7 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
+// ##FAVORITE | LOGIC TOGGLE
   void _toggleFavorite(String mealId) {
     final existingIndex =
         _favoriteMeals.indexWhere((meal) => meal.id == mealId);

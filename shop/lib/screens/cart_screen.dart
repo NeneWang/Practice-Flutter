@@ -26,6 +26,7 @@ class CartScreen extends StatelessWidget {
                     'Total',
                     style: TextStyle(fontSize: 20),
                   ),
+                  Spacer(),
                   Chip(
                     label: Text(
                       '\$${cart.totalAmount}',

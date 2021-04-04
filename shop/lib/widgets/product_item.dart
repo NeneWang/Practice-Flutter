@@ -41,6 +41,7 @@ class ProductItem extends StatelessWidget {
                 product.toggleFavoriteStatus();
               },
             ),
+            child: Text('Never changes!'),
           ),
           title: Text(
             product.title,

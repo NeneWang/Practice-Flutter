@@ -5,12 +5,12 @@ import '../providers/orders.dart';
 class OrdersScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final orders = Provider.of<Orders>(context);
+    final orderData = Provider.of<Orders>(context);
     return Scaffold(
       appBar: AppBar(
         title: Text('Your Orders'),
       ),
-      body: ,
+      body: ListView.builder(itemBuilder: orderData.orders.length, itemBuilder: (ctx, i) => ),
     );
   }
 }

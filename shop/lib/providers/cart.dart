@@ -55,7 +55,7 @@ class Cart with ChangeNotifier {
           id: DateTime.now().toString(),
           title: title,
           price: price,
-          quantity: 1,
+          quantity: 12,
         ),
       );
     }

@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../providers/cart.dart';
 import 'product_item.dart';
+import 'package:intl/intl.dart';
 
 class CartItem extends StatelessWidget {
   final String id;

@@ -3,7 +3,6 @@ import 'package:intl/intl.dart';
 
 import '../providers/orders.dart' as ord;
 
-
 class OrderItem extends StatelessWidget {
   final ord.OrderItem order;
 
@@ -16,11 +15,10 @@ class OrderItem extends StatelessWidget {
       child: Column(
         children: <Widget>[
           ListTile(
-            title: Text('\$ ${order.amount}'),
-            subtitle: Text(DateFormat('dd MM yyyy').format(order.dateTime)),
-            trailing: IconButton(icon: Icon(Icons.expand_more), onPressed() )
-          ),
-          
+              title: Text('\$ ${order.amount}'),
+              subtitle: Text(DateFormat('dd MM yyyy').format(order.dateTime)),
+              trailing:
+                  IconButton(icon: Icon(Icons.expand_more), onPressed: () {})),
         ],
       ),
     );

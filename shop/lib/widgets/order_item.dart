@@ -35,6 +35,24 @@ class _OrderItemState extends State<OrderItem> {
           if (_expanded)
             Container(
               height: min(widget.order.products.length * 20.0 + 100, 180),
+              child: ListView(
+                  children: widget.order.products
+                      .map((prod) => Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: <Widget>[
+                              Text(
+                                prod.title,
+                                style: TextStyle(
+                                    fontSize: 19, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                '${prod.quantity}x \$${prod.price}',
+                                style:
+                                    TextStyle(fontSize: 18, color: Colors.grey),
+                              )
+                            ],
+                          ))
+                      .toList()),
             )
         ],
       ),

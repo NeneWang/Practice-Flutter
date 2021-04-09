@@ -85,6 +85,18 @@ class _EditProductScreenState extends State<EditProductScreen> {
               ),
               TextFormField(
                 decoration: InputDecoration(labelText: 'Price'),
+                validator: (value) {
+                  if (value.isEmpty) {
+                    return "Please entere a price.";
+                  }
+                  if (double.tryParse(value) == null) {
+                    return 'Please entere a valid number.';
+                  }
+                  if (double.parse(value) <= 0) {
+                    return "Teh price has to be greater than 0";
+                  }
+                  return null;
+                },
                 textInputAction: TextInputAction.next,
                 keyboardType: TextInputType.number,
                 focusNode: _priceFocusNode,

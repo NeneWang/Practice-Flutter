@@ -18,6 +18,14 @@ class _EditProductScreenState extends State<EditProductScreen> {
 
   @override
   void initState() {
+    if (_imageUrlController.text.isEmpty ||
+        !_imageUrlController.text.startsWith('http') &&
+            !_imageUrlController.text.startsWith('https') ||
+        !_imageUrlController.text.endsWith('png') &&
+            !_imageUrlController.text.endsWith('png') &&
+            !_imageUrlController.text.endsWith('jpeg')) {
+      return;
+    }
     _imageUrlFocusNode.addListener(_updateImageUrl);
     super.initState();
   }

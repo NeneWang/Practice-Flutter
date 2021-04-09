@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../providers/products.dart';
 import '../widgets/user_product_item.dart';
 
-class UserProductScreen extends StatelessWidget {
+class UserProductsScreen extends StatelessWidget {
   static const routeName = '/user-products';
 
   @override

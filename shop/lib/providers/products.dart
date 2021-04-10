@@ -56,11 +56,10 @@ class Products with ChangeNotifier {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
-  Future<void> addProduct(Product product) {
+  Future<void> addProduct(Product product) async {
     final url = Uri.parse(
         'https://descartable-server-default-rtdb.firebaseio.com/products.json');
-    return http
-        .post(
+    final response = await http.post(
       url,
       body: json.encode({
         'title': product.title,
@@ -69,24 +68,22 @@ class Products with ChangeNotifier {
         'price': product.price,
         'isFavorite': product.isFavorite,
       }),
-    )
-        .then((response) {
-      //Something like this is returned: {name: -MXwRZrFDY6aQKnzJtYz}
-      final responseDecoded = json.decode(response.body);
-      final newProduct = Product(
-        title: product.title,
-        description: product.description,
-        price: product.price,
-        imageUrl: product.imageUrl,
-        id: responseDecoded["name"],
-      );
-      _items.add(newProduct);
-      // _items.insert(0, newProduct); // at the start of the list
-      notifyListeners();
-    }).catchError((error) {
-      print(error);
-      throw (error);
-    });
+    );
+    //Something like this is returned: {name: -MXwRZrFDY6aQKnzJtYz}
+    final responseDecoded = json.decode(response.body);
+    final newProduct = Product(
+      title: product.title,
+      description: product.description,
+      price: product.price,
+      imageUrl: product.imageUrl,
+      id: responseDecoded["name"],
+    );
+    _items.add(newProduct);
+    // _items.insert(0, newProduct); // at the start of the list
+    notifyListeners();
+    //   print(error);
+    //   throw (error);
+    // });
   }
 
   void updateProduct(String id, Product newProduct) {

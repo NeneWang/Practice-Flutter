@@ -8,9 +8,8 @@ class UserProductItem extends StatelessWidget {
   final String id;
   final String title;
   final String imageUrl;
-  final Function deleteHandler;
 
-  UserProductItem(this.id, this.title, this.imageUrl, this.deleteHandler);
+  UserProductItem(this.id, this.title, this.imageUrl);
 
   @override
   Widget build(BuildContext context) {

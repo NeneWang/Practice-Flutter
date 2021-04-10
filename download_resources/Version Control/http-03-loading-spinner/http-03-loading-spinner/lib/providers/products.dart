@@ -1,7 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-import 'dart:convert';
 import './product.dart';
 
 class Products with ChangeNotifier {
@@ -56,9 +57,18 @@ class Products with ChangeNotifier {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
+  // void showFavoritesOnly() {
+  //   _showFavoritesOnly = true;
+  //   notifyListeners();
+  // }
+
+  // void showAll() {
+  //   _showFavoritesOnly = false;
+  //   notifyListeners();
+  // }
+
   Future<void> addProduct(Product product) {
-    final url = Uri.parse(
-        'https://descartable-server-default-rtdb.firebaseio.com/products.json');
+    const url = 'https://flutter-update.firebaseio.com/products.json';
     return http
         .post(
       url,
@@ -67,18 +77,16 @@ class Products with ChangeNotifier {
         'description': product.description,
         'imageUrl': product.imageUrl,
         'price': product.price,
-        'isFavorite': product.isFavorite
+        'isFavorite': product.isFavorite,
       }),
     )
         .then((response) {
-      //Something like this is returned: {name: -MXwRZrFDY6aQKnzJtYz}
-      final responseDecoded = json.decode(response.body);
       final newProduct = Product(
         title: product.title,
         description: product.description,
         price: product.price,
         imageUrl: product.imageUrl,
-        id: responseDecoded["name"],
+        id: json.decode(response.body)['name'],
       );
       _items.add(newProduct);
       // _items.insert(0, newProduct); // at the start of the list

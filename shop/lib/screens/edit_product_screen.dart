@@ -19,6 +19,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
   var _editedProduct =
       Product(id: null, title: '', price: 0, description: '', imageUrl: '');
 
+  var _isInit = true;
+
   @override
   void initState() {
     if (_imageUrlController.text.isEmpty ||
@@ -31,6 +33,16 @@ class _EditProductScreenState extends State<EditProductScreen> {
     }
     _imageUrlFocusNode.addListener(_updateImageUrl);
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (_isInit) {
+      final productId = ModalRoute.of(context).settings.arguments as String;
+      _editedProduct =
+          Provider.of<Products>(context, listen: false).findById(productId);
+    }
+    super.didChangeDependencies();
   }
 
   void _updateImageUrl() {

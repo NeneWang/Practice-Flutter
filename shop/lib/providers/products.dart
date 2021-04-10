@@ -119,7 +119,7 @@ class Products with ChangeNotifier {
     if (prodIndex >= 0) {
       final url = Uri.parse(
           'https://descartable-server-default-rtdb.firebaseio.com/products/$id.json');
-      http.patch(url,
+      await http.patch(url,
           body: json.encode({
             'title': newProduct.title,
             'description': newProduct.description,

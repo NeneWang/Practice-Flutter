@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
+import 'dart:convert';
 import './product.dart';
 
 class Products with ChangeNotifier {
@@ -54,17 +56,19 @@ class Products with ChangeNotifier {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
-  // void showFavoritesOnly() {
-  //   _showFavoritesOnly = true;
-  //   notifyListeners();
-  // }
-
-  // void showAll() {
-  //   _showFavoritesOnly = false;
-  //   notifyListeners();
-  // }
-
   void addProduct(Product product) {
+    final url = Uri.parse(
+        'https://descartable-server-default-rtdb.firebaseio.com/products.json');
+    http.post(
+      url,
+      body: json.encode({
+        'title': product.title,
+        'description': product.description,
+        'imageUrl': product.imageUrl,
+        'price': product.price,
+        'isFavorite': product.isFavorite
+      }),
+    );
     final newProduct = Product(
       title: product.title,
       description: product.description,

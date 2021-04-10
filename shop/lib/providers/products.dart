@@ -56,6 +56,16 @@ class Products with ChangeNotifier {
     return _items.firstWhere((prod) => prod.id == id);
   }
 
+  Future<void> fetchAndSetProducts() async {
+    final url = Uri.parse(
+        'https://descartable-server-default-rtdb.firebaseio.com/products.json');
+    try {
+      final response = await http.get(url);
+    } catch (error) {
+      throw (error);
+    }
+  }
+
   Future<void> addProduct(Product product) async {
     final url = Uri.parse(
         'https://descartable-server-default-rtdb.firebaseio.com/products.json');

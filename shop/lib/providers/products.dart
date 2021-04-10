@@ -59,30 +59,34 @@ class Products with ChangeNotifier {
   Future<void> addProduct(Product product) async {
     final url = Uri.parse(
         'https://descartable-server-default-rtdb.firebaseio.com/products.json');
-    final response = await http.post(
-      url,
-      body: json.encode({
-        'title': product.title,
-        'description': product.description,
-        'imageUrl': product.imageUrl,
-        'price': product.price,
-        'isFavorite': product.isFavorite,
-      }),
-    );
+    try {
+      final response = await http.post(
+        url,
+        body: json.encode({
+          'title': product.title,
+          'description': product.description,
+          'imageUrl': product.imageUrl,
+          'price': product.price,
+          'isFavorite': product.isFavorite,
+        }),
+      );
+      final responseDecoded = json.decode(response.body);
+      final newProduct = Product(
+        title: product.title,
+        description: product.description,
+        price: product.price,
+        imageUrl: product.imageUrl,
+        id: responseDecoded["name"],
+      );
+      _items.add(newProduct);
+      // _items.insert(0, newProduct); // at the start of the list
+      notifyListeners();
+    } catch (error) {
+      print(error);
+      throw (error);
+    }
     //Something like this is returned: {name: -MXwRZrFDY6aQKnzJtYz}
-    final responseDecoded = json.decode(response.body);
-    final newProduct = Product(
-      title: product.title,
-      description: product.description,
-      price: product.price,
-      imageUrl: product.imageUrl,
-      id: responseDecoded["name"],
-    );
-    _items.add(newProduct);
-    // _items.insert(0, newProduct); // at the start of the list
-    notifyListeners();
-    //   print(error);
-    //   throw (error);
+
     // });
   }
 

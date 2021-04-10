@@ -55,7 +55,9 @@ class _EditProductScreenState extends State<EditProductScreen> {
       return;
     }
     _form.currentState.save();
-    Provider.of<Products>(context, listen: false);
+    Provider.of<Products>(context, listen: false).addProduct(_editedProduct);
+    Navigator.of(context).pop();
+
     // print(_editedProduct.title);
     // print(_editedProduct.description);
     // print(_editedProduct.price);
@@ -133,8 +135,8 @@ class _EditProductScreenState extends State<EditProductScreen> {
                   if (value.isEmpty) {
                     return 'Please enter a description';
                   }
-                  if (value.length > 10) {
-                    return 'Should be at least 10 characters long';
+                  if (value.length < 1) {
+                    return 'Should be at least 1 characters long';
                   }
                   return null;
                 },
@@ -184,7 +186,7 @@ class _EditProductScreenState extends State<EditProductScreen> {
                           return "Please enter a valid url";
                         }
                         if (!value.endsWith('png') &&
-                            !value.endsWith('png') &&
+                            !value.endsWith('jpg') &&
                             !value.endsWith('jpeg')) {
                           return "Please enter a valid image url (png, jpg, jpeg)";
                         }

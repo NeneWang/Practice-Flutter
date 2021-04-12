@@ -24,6 +24,7 @@ class Product with ChangeNotifier {
     notifyListeners();
   }
 
+// optimistic approach
   void toggleFavoriteStatus() async {
     final oldStatus = isFavorite;
     isFavorite = !isFavorite;
@@ -37,10 +38,12 @@ class Product with ChangeNotifier {
           'isFavorite': isFavorite,
         }),
       );
+      // If there is an error but theconnection works
       if (response.statusCode >= 400) {
         _setFavValue(oldStatus);
       }
     } catch (error) {
+      // If the attempts fails
       _setFavValue(oldStatus);
     }
   }

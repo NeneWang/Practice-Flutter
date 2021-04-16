@@ -1,4 +1,5 @@
 import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,13 +25,11 @@ class Product with ChangeNotifier {
     notifyListeners();
   }
 
-// optimistic approach
-  void toggleFavoriteStatus() async {
+  Future<void> toggleFavoriteStatus() async {
     final oldStatus = isFavorite;
     isFavorite = !isFavorite;
     notifyListeners();
-    final url = Uri.parse(
-        'https://descartable-server-default-rtdb.firebaseio.com/products/$id.json');
+    final url = Uri.https('flutter-update.firebaseio.com', '/products/$id.json');
     try {
       final response = await http.patch(
         url,
@@ -38,12 +37,10 @@ class Product with ChangeNotifier {
           'isFavorite': isFavorite,
         }),
       );
-      // If there is an error but theconnection works
       if (response.statusCode >= 400) {
         _setFavValue(oldStatus);
       }
     } catch (error) {
-      // If the attempts fails
       _setFavValue(oldStatus);
     }
   }

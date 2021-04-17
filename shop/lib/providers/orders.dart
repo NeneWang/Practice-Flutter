@@ -1,7 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/foundation.dart';
+import 'dart:convert';
 import 'package:http/http.dart' as http;
+import '../models/http_exception.dart';
 
 import './cart.dart';
 
@@ -27,7 +27,9 @@ class Orders with ChangeNotifier {
   }
 
   Future<void> fetchAndSetOrders() async {
-    final url = Uri.https('flutter-update.firebaseio.com' ,'/orders.json');
+    final url = Uri.parse(
+        'https://descartable-server-default-rtdb.firebaseio.com/orders.json');
+
     final response = await http.get(url);
     final List<OrderItem> loadedOrders = [];
     final extractedData = json.decode(response.body) as Map<String, dynamic>;
@@ -43,11 +45,11 @@ class Orders with ChangeNotifier {
           products: (orderData['products'] as List<dynamic>)
               .map(
                 (item) => CartItem(
-                      id: item['id'],
-                      price: item['price'],
-                      quantity: item['quantity'],
-                      title: item['title'],
-                    ),
+                  id: item['id'],
+                  price: item['price'],
+                  quantity: item['quantity'],
+                  title: item['title'],
+                ),
               )
               .toList(),
         ),
@@ -57,8 +59,9 @@ class Orders with ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addOrder(List<CartItem> cartProducts, double total) async {
-    final url = Uri.https('flutter-update.firebaseio.com' ,'/orders.json');
+  void addOrder(List<CartItem> cartProducts, double total) async {
+    final url = Uri.parse(
+        'https://descartable-server-default-rtdb.firebaseio.com/orders.json');
     final timestamp = DateTime.now();
     final response = await http.post(
       url,

@@ -145,7 +145,6 @@ class _AuthCardState extends State<AuthCard> {
           _authData['password'],
         );
       }
-      Navigator.of(context).pushReplacementNamed('/products-overview');
     } on HttpException catch (error) {
       var errorMessage = 'Authentication failed';
       if (error.toString().contains('EMAIL_EXISTS')) {
@@ -209,7 +208,6 @@ class _AuthCardState extends State<AuthCard> {
                     if (value.isEmpty || !value.contains('@')) {
                       return 'Invalid email!';
                     }
-                    return null;
                   },
                   onSaved: (value) {
                     _authData['email'] = value;

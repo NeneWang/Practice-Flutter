@@ -44,7 +44,7 @@ class Products with ChangeNotifier {
 
   final String authToken;
 
-  Products(this.authToken);
+  Products(this.authToken, this._items);
 
   List<Product> get items {
     return [..._items];

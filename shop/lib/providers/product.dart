@@ -25,18 +25,18 @@ class Product with ChangeNotifier {
   }
 
 // optimistic approach
-  void toggleFavoriteStatus(String authToken) async {
+  void toggleFavoriteStatus(String authToken, String userId) async {
     final oldStatus = isFavorite;
     isFavorite = !isFavorite;
     notifyListeners();
     final url = Uri.parse(
-        'https://descartable-server-default-rtdb.firebaseio.com/products/$id.json?auth=$authToken');
+        'https://descartable-server-default-rtdb.firebaseio.com/usersFavorites/$userId/$id.json?auth=$authToken');
     try {
-      final response = await http.patch(
+      final response = await http.put(
         url,
-        body: json.encode({
-          'isFavorite': isFavorite,
-        }),
+        body: json.encode(
+          isFavorite,
+        ),
       );
       // If there is an error but theconnection works
       if (response.statusCode >= 400) {

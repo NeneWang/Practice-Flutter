@@ -41,7 +41,10 @@ class Products with ChangeNotifier {
     //         'https://upload.wikimedia.org/wikipedia/commons/thumb/1/14/Cast-Iron-Pan.jpg/1024px-Cast-Iron-Pan.jpg',
     //   ),
   ];
-  // var _showFavoritesOnly = false;
+
+  final String authToken;
+
+  Products(this.authToken);
 
   List<Product> get items {
     return [..._items];
@@ -57,7 +60,7 @@ class Products with ChangeNotifier {
 
   Future<void> fetchAndSetProducts() async {
     final url = Uri.parse(
-        'https://descartable-server-default-rtdb.firebaseio.com/products.json');
+        'https://descartable-server-default-rtdb.firebaseio.com/products.json?auth=$authToken');
     try {
       final response = await http.get(url);
       final extractedData = json.decode(response.body) as Map<String, dynamic>;

@@ -12,8 +12,8 @@ class Auth with ChangeNotifier {
 
   Future<void> _authenticate(
       String email, String password, String urlSegment) async {
-    final url = Uri.parse(
-        'https://www.googleapis.com/identitytoolkit/v3/relyingparty/$urlSegment?key=AIzaSyBaufITJhEiUWntUZLwxfFQwlN9bixHhWc');
+    final url =
+        Uri.parse(('https://www.googleapis.com/identitytoolkit/v3/relyingparty/$urlSegment?key=AIzaSyC13spCwP_f_SalxEbkB-wjedoF8iYENlQ');
     try {
       final response = await http.post(
         url,
@@ -27,12 +27,11 @@ class Auth with ChangeNotifier {
       );
       final responseData = json.decode(response.body);
       if (responseData['error'] != null) {
-        throw HttpException(responseData["error"]['message']);
+        throw HttpException(responseData['error']['message']);
       }
     } catch (error) {
       throw error;
     }
-    // print(json.decode(response.body));
   }
 
   Future<void> signup(String email, String password) async {
@@ -43,6 +42,3 @@ class Auth with ChangeNotifier {
     return _authenticate(email, password, 'verifyPassword');
   }
 }
-
-// https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=[API_KEY]
-// https://identitytoolkit.googleapis.com/v1/accounts:signInWithCustomToken?key=AIzaSyBaufITJhEiUWntUZLwxfFQwlN9bixHhWc

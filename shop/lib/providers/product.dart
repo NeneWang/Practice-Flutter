@@ -25,12 +25,12 @@ class Product with ChangeNotifier {
   }
 
 // optimistic approach
-  void toggleFavoriteStatus() async {
+  void toggleFavoriteStatus(String authToken) async {
     final oldStatus = isFavorite;
     isFavorite = !isFavorite;
     notifyListeners();
     final url = Uri.parse(
-        'https://descartable-server-default-rtdb.firebaseio.com/products/$id.json');
+        'https://descartable-server-default-rtdb.firebaseio.com/products/$id.json?auth=$authToken');
     try {
       final response = await http.patch(
         url,

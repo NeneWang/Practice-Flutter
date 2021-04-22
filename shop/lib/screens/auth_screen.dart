@@ -1,5 +1,4 @@
 import 'dart:math';
-import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -111,17 +110,29 @@ class _AuthCardState extends State<AuthCard>
   @override
   void initState() {
     super.initState();
-    _controller =
-        AnimationController(vsync: this, duration: Duration(microseconds: 300));
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(
+        milliseconds: 300,
+      ),
+    );
     _heightAnimation = Tween<Size>(
             begin: Size(double.infinity, 260), end: Size(double.infinity, 320))
         .animate(
-      CurvedAnimation(parent: _controller, curve: Curves.fastOutSlowIn),
+      CurvedAnimation(
+        parent: _controller,
+        curve: Curves.fastOutSlowIn,
+      ),
     );
     _heightAnimation.addListener(() => setState(() {}));
   }
 
-  var containerHeight = 260;
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _controller.dispose();
+  }
 
   void _showErrorDialog(String message) {
     showDialog(
@@ -214,8 +225,7 @@ class _AuthCardState extends State<AuthCard>
       child: Container(
         // height: _authMode == AuthMode.Signup ? 320 : 260,
         height: _heightAnimation.value.height,
-        constraints:
-            BoxConstraints(minHeight: _authMode == AuthMode.Signup ? 320 : 260),
+        constraints: BoxConstraints(minHeight: _heightAnimation.value.height),
         width: deviceSize.width * 0.75,
         padding: EdgeInsets.all(16.0),
         child: Form(

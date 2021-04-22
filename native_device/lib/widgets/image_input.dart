@@ -21,6 +21,11 @@ class _ImageInputState extends State<ImageInput> {
     final imageFile = await picker.getImage(
       source: ImageSource.camera,
     );
+
+    if (imageFile == null) {
+      return;
+    }
+
     setState(() {
       if (imageFile != null) {
         _storedImage = File(imageFile.path);

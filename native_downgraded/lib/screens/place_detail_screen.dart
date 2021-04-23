@@ -49,9 +49,9 @@ class PlaceDetailScreen extends StatelessWidget {
                 MaterialPageRoute(
                   fullscreenDialog: true,
                   builder: (ctx) => MapScreen(
-                    initialLocation: selectedPlace.location,
-                    isSelecting: false,
-                  ),
+                        initialLocation: selectedPlace.location,
+                        isSelecting: false,
+                      ),
                 ),
               );
             },

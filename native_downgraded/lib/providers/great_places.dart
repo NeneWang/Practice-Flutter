@@ -52,15 +52,15 @@ class GreatPlaces with ChangeNotifier {
     _items = dataList
         .map(
           (item) => Place(
-            id: item['id'],
-            title: item['title'],
-            image: File(item['image']),
-            location: PlaceLocation(
-              latitude: item['loc_lat'],
-              longitude: item['loc_lng'],
-              address: item['address'],
-            ),
-          ),
+                id: item['id'],
+                title: item['title'],
+                image: File(item['image']),
+                location: PlaceLocation(
+                  latitude: item['loc_lat'],
+                  longitude: item['loc_lng'],
+                  address: item['address'],
+                ),
+              ),
         )
         .toList();
     notifyListeners();

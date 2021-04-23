@@ -28,8 +28,8 @@ class _LocationInputState extends State<LocationInput> {
       MaterialPageRoute(
         fullscreenDialog: true,
         builder: (ctx) => MapScreen(
-          isSelecting: true,
-        ),
+              isSelecting: true,
+            ),
       ),
     );
     if (selectedLocation == null) {

@@ -53,7 +53,7 @@ class _MapScreenState extends State<MapScreen> {
         ),
         onTap: widget.isSelecting ? _selectLocation : null,
         markers: _pickedLocation == null
-            ? {}
+            ? null
             : {
                 Marker(
                   markerId: MarkerId('m1'),

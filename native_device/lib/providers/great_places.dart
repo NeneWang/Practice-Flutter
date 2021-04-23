@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/rendering.dart';
 
 import '../models/place.dart';
 import '../helpers/db_helper.dart';
@@ -22,9 +21,10 @@ class GreatPlaces with ChangeNotifier {
     final address = await LocationHelper.getPlaceAddress(
         pickedLocation.latitude, pickedLocation.longitude);
     final updatedLocation = PlaceLocation(
-        latitude: pickedLocation.latitude,
-        longitude: pickedLocation.longitude,
-        address: address);
+      latitude: pickedLocation.latitude,
+      longitude: pickedLocation.longitude,
+      address: address,
+    );
     final newPlace = Place(
       id: DateTime.now().toString(),
       image: pickedImage,
@@ -46,14 +46,18 @@ class GreatPlaces with ChangeNotifier {
   Future<void> fetchAndSetPlaces() async {
     final dataList = await DBHelper.getData('user_places');
     _items = dataList
-        .map((item) => Place(
-            id: item['id '],
-            title: item["title"],
+        .map(
+          (item) => Place(
+            id: item['id'],
+            title: item['title'],
             image: File(item['image']),
             location: PlaceLocation(
-                latitude: item['loc_lat'],
-                longitude: item['loc_lng'],
-                address: item['address'])))
+              latitude: item['loc_lat'],
+              longitude: item['loc_lng'],
+              address: item['address'],
+            ),
+          ),
+        )
         .toList();
     notifyListeners();
   }

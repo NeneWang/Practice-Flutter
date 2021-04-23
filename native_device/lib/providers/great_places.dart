@@ -36,7 +36,10 @@ class GreatPlaces with ChangeNotifier {
     DBHelper.insert('user_places', {
       'id': newPlace.id,
       'title': newPlace.title,
-      'image': newPlace.image.path
+      'image': newPlace.image.path,
+      'loc_lat': newPlace.location.latitude,
+      'loc_lng': newPlace.location.longitude,
+      'address': newPlace.location.address,
     });
   }
 
@@ -47,7 +50,10 @@ class GreatPlaces with ChangeNotifier {
             id: item['id '],
             title: item["title"],
             image: File(item['image']),
-            location: null))
+            location: PlaceLocation(
+                latitude: item['loc_lat'],
+                longitude: item['loc_lng'],
+                address: item['address'])))
         .toList();
     notifyListeners();
   }

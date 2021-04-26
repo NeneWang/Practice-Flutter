@@ -88,7 +88,10 @@ class Products with ChangeNotifier {
       final favoriteResponse = await http.get(url);
       final favoriteData = json.decode(favoriteResponse.body);
       final List<Product> loadedProducts = [];
+      print(favoriteData);
+      print(url);
       extractedData.forEach((prodId, prodData) {
+        // print(favoriteData[prodId]);
         loadedProducts.add(Product(
           id: prodId,
           title: prodData['title'],

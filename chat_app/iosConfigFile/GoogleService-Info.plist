@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>6011918544-dnup9agnjut2usf66dpn5m80an9onna5.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.6011918544-dnup9agnjut2usf66dpn5m80an9onna5</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAOQ7wAnZ_DE6wyB2A4IvYwkbZThXWtixQ</string>
+	<key>GCM_SENDER_ID</key>
+	<string>6011918544</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.chatApp</string>
+	<key>PROJECT_ID</key>
+	<string>descartable-server</string>
+	<key>STORAGE_BUCKET</key>
+	<string>descartable-server.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:6011918544:ios:b97fa4ef6e0cfef63526d5</string>
+	<key>DATABASE_URL</key>
+	<string>https://descartable-server-default-rtdb.firebaseio.com</string>
+</dict>
+</plist>

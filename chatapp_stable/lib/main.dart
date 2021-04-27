@@ -15,7 +15,27 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ChatScreen(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(("TGD Notes")),
+        ),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {},
+        ),
+        body: GridView.builder(
+          itemCount: 10,
+          gridDelegate:
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+          itemBuilder: (_, index) {
+            return Container(
+              height: 150,
+              margin: EdgeInsets.all(20),
+              color: Colors.grey[200],
+            );
+          },
+        ),
+      ),
     );
   }
 }

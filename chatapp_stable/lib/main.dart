@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
+import 'package:firebase_core/firebase_core.dart';
 import 'package:chatapp_stable/screens/chat_screen.dart';
 import './screens/addNote.dart';
 
-void main() {
+void main() async {
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 

@@ -6,6 +6,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
+  Text("Stuff");
 }
 
 class MyApp extends StatelessWidget {
@@ -20,8 +21,8 @@ class MyApp extends StatelessWidget {
 
 class FirebaseAuthDemo extends StatelessWidget {
   final TextEditingController _textEditingController = TextEditingController();
-  final CollectionReference collectionReference = FirebaseFirestore.instance.collection('contacts');
-
+  final CollectionReference collectionReference =
+      FirebaseFirestore.instance.collection('contacts');
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +54,9 @@ class FirebaseAuthDemo extends StatelessWidget {
                 SizedBox(
                   child: ElevatedButton(
                       onPressed: () async {
-                        await collectionReference.add({'name': _textEditingController.text}).then((value) => _textEditingController.clear());
+                        await collectionReference
+                            .add({'name': _textEditingController.text}).then(
+                                (value) => _textEditingController.clear());
                       },
                       child: Text(
                         'Add Data',
@@ -63,21 +66,31 @@ class FirebaseAuthDemo extends StatelessWidget {
               ],
             ),
             Expanded(
-                child: StreamBuilder(stream: collectionReference.snapshots(),
-                  builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-                  if(snapshot.hasData){
-                    return ListView(
-                      children: snapshot.data.docs.map((e) => Column(
-                        children: [
-                          ListTile(title: Text(e['name']),),
-                          Divider(color: Colors.black.withOpacity(0.6), thickness: 2,)
-                        ],
-                      )).toList(),
-                    );
-                  }
-                  return Center(child: CircularProgressIndicator(),);
-                  },
-
+                child: StreamBuilder(
+              stream: collectionReference.snapshots(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasData) {
+                  return ListView(
+                    children: snapshot.data.docs
+                        .map((e) => Column(
+                              children: [
+                                ListTile(
+                                  title: Text(e['name']),
+                                ),
+                                Divider(
+                                  color: Colors.black.withOpacity(0.6),
+                                  thickness: 2,
+                                )
+                              ],
+                            ))
+                        .toList(),
+                  );
+                }
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              },
             ))
           ],
         ),

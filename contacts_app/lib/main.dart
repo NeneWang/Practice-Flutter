@@ -6,7 +6,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
-  Text("Placeholder ");
+  Text("Placeholder test");
 }
 
 class MyApp extends StatelessWidget {

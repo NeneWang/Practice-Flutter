@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
 class FirebaseAuthDemo extends StatelessWidget {
   final TextEditingController _textEditingController = TextEditingController();
   final CollectionReference collectionReference =
-      FirebaseFirestore.instance.collection('contacts');
+      FirebaseFirestore.instance.collection('contactss');
 
   @override
   Widget build(BuildContext context) {

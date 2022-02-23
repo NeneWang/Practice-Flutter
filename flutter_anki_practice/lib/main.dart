@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'Greeter.dart';
+import 'WidgetWithState.dart';
+import 'SomeWidget.dart';
+import 'ProgressIndicator.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,7 +16,9 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: Center(
             child: Row(
-          children: [Text('Hello asdas'), Text('Hello world'), Greeter(name: "Nelson")],
+          children: [
+            ProgressIndicatorComp()
+          ],
         )),
       ),
     );

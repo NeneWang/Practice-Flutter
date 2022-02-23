@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Greeter extends StatelessWidget {
-  const Greeter({Key? key, required this.name}) : super(key: key);
+  Greeter({Key? key, required this.name}) : super(key: key);
 
   final String name;
 

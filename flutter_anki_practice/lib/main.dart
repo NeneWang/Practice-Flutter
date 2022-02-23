@@ -13,7 +13,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      restorationScopeId: 'app',
       title: _title,
       home: MyStatelessWidget(),
     );
@@ -31,7 +30,7 @@ class MyStatelessWidget extends StatelessWidget {
           onPressed: () {
             Navigator.of(context).restorablePush(_dialogBuilder);
           },
-          child: const Text('Open Dialog'),
+          child: const Text('Open 2Dialog'),
         ),
       ),
     );
